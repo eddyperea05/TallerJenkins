@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "7cef87fd-2062-4a4a-884c-2304bfe97ef2",
+		"name": "MyCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3943032"
+	},
+	"item": [
+		{
+			"name": "Add a user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json()\r",
+							"\r",
+							"pm.collectionVariables.set('userID',jsonData.data.id)\r",
+							"\r",
+							"pm.test(\"Status code should be 201\", ()=>{\r",
+							"    pm.response.to.have.status(201)\r",
+							"})\r",
+							"\r",
+							"\r",
+							"/*pm.test(\"email should match\", ()=>{\r",
+							"    pm.expect(jsonData.email).to.be.eq(\"edd@test.xco\")\r",
+							"})*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Edd Perdomo\",\r\n    \"email\": \"edd@test.com\",\r\n    \"gender\": \"male\",\r\n    \"status\": \"active\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocolo}}://{{url}}/{{visibility}}/{{version}}/users",
+					"protocol": "{{protocolo}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{visibility}}",
+						"{{version}}",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search a user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code should be 200\",()=>{\r",
+							"    pm.response.to.have.status(200)\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocolo}}://{{url}}/{{visibility}}/{{version}}/users/{{userID}}",
+					"protocol": "{{protocolo}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{visibility}}",
+						"{{version}}",
+						"users",
+						"{{userID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code should be 200\",()=>{\r",
+							"    pm.response.to.have.status(200)\r",
+							"})\r",
+							"\r",
+							"const jsonData = pm.response.json()\r",
+							"\r",
+							"pm.test(\"status should inactive\", ()=>{\r",
+							"    pm.expect(jsonData.data.status).to.be.eq(\"inactive\")\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Edmond Perdomo\",\r\n    \"email\": \"edd@test.com\",\r\n    \"gender\": \"male\",\r\n    \"status\": \"inactive\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocolo}}://{{url}}/{{visibility}}/{{version}}/users/{{userID}}",
+					"protocol": "{{protocolo}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{visibility}}",
+						"{{version}}",
+						"users",
+						"{{userID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status code should be 204',()=>{\r",
+							"    pm.response.to.have.status(204)\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{protocolo}}://{{url}}/{{visibility}}/{{version}}/users/{{userID}}",
+					"protocol": "{{protocolo}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{visibility}}",
+						"{{version}}",
+						"users",
+						"{{userID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "4b9af4dfeffdaf3b0b5bd6c385f9b650ef32748b516be48efaa358adf12a7942",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "userID",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
