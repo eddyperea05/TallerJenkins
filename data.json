@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Edd Perdomo",
+        "email": "edd@test.com",
+        "gender": "male",
+        "status": "active"
+    },
+    {
+        "name": "Dani Osorio",
+        "email": "daniosorio@test2.com",
+        "gender": "female",
+        "status": "active"
+    },
+    {
+        "name": "Eva Martinez",
+        "email": "eva@testsqa.com",
+        "gender": "female",
+        "status": "inactive"
+    }
+]
